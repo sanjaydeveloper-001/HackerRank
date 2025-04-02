@@ -1,0 +1,72 @@
+import java.io.*;
+import java.util.*;
+
+class node{
+    node next;
+    int data;
+    node(int d){
+        data=d;
+    }
+}
+
+public class Solution {
+    
+    static node head=null;
+    static node last=null;
+    
+    static void ins(int a){
+        node nn=new node(a);
+        
+        if(head==null){
+            head=nn;
+            last=nn;
+        }
+        else{
+            last.next=nn;
+            last=nn;
+        }
+    }
+    
+    static node rev(int k,node head){
+        node p=null;
+        node c=head;
+        node f=null;
+        int cou=0;
+        while(c!=null && cou!=k){
+            f=c.next;
+            c.next=p;
+            p=c;
+            c=f;
+            cou++;
+        }
+        if(c!=null){
+            head.next=rev(k,c);
+        }
+        return p;
+    }
+    
+    static void dis(){
+        node t=head;
+        while(t!=null){
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int a=sc.nextInt();
+            if(a==-1){
+                break;
+            }
+            ins(a);
+        }
+        
+        int k=sc.nextInt();
+        if(k>0)
+        head=rev(k,head);
+        dis();
+    }
+}
