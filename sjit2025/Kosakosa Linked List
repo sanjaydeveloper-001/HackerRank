@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] str = scanner.nextLine().split(" ");
+        
+        LinkedHashSet<Integer> list = new LinkedHashSet<>();
+        
+        for (String num : str) {
+            list.add(Integer.parseInt(num));
+        }
+        
+        LinkedList<Integer> lilist = new LinkedList<>(list);
+        
+        for (int num : lilist) {
+            System.out.print(num + " ");
+        }
+        System.out.println(); 
+        int mid = lilist.size() / 2;
+        System.out.println(lilist.get(mid));
+    }
+}
