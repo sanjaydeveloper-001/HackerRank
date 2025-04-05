@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    
+    public static void fun(String s, int m, int n, ArrayList<String> str){
+        if(m==1 && n==1){
+            str.add(s);
+            s="";
+        }
+        if(m==0 || n==0){
+            return;
+        }
+        fun(s+"h",m,n-1,str);
+        fun(s+"v",m-1,n,str);
+        
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        String s="";
+        ArrayList<String> str=new ArrayList();
+        fun(s,m,n,str);
+        System.out.print(str);
+
+    }
+}
