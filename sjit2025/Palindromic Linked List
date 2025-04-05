@@ -1,0 +1,98 @@
+import java.io.*;
+import java.util.*;
+
+class node{
+    node next;
+    int data;
+    node(int d){
+        data=d;
+    }
+}
+
+public class Solution {
+    node head2=null;
+    node head=null;
+    node tail=null;
+    
+    //Insertion Part for Head 
+    
+    void ins(int d){
+        node nn=new node(d);
+        if(head==null){
+            head=nn;
+            tail=nn;
+        }
+        else{
+            tail.next=nn;
+            tail=nn;
+        }
+    }
+    
+    //insertion Part for Head2
+    
+    void ins2(int d){
+       node nn=new node(d);
+        if(head2==null){
+            head2=nn;
+        }
+        else{
+            nn.next=head2;
+            head2=nn;
+        }
+    }
+    
+    // Display
+    
+    void dis(){
+        node t=head;
+        while(t!=null){
+            System.out.print(t.data+ " ");
+            t=t.next;
+        }
+    }
+    
+    void dis2(){
+        node t=head2;
+        while(t!=null){
+            System.out.print(t.data+ " ");
+            t=t.next;
+        }
+    }
+    
+    // Palindrome check
+    
+    boolean pal(){
+        node t=head;
+        node t2=head2;
+        int flag=0;
+        
+        while(t!=null){
+            if(t.data != t2.data){
+                flag=1;
+            }
+            t=t.next;
+            t2=t2.next;
+        }
+        
+        if(flag==0){
+            return true;
+        }
+        return false;
+    }
+    
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Solution sol=new Solution();
+        
+        while(sc.hasNext()){
+            int i=sc.nextInt();
+            if(i==-1) break;
+            sol.ins(i);
+            sol.ins2(i);
+        }
+        
+        System.out.print(sol.pal());
+        
+    }
+}
