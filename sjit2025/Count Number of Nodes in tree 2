@@ -1,0 +1,75 @@
+You are given the root node of a binary tree.Count the number of nodes present.
+
+Input Format
+The first and the only line of input will contain the node data, all separated by a single space. Since -1 is used as
+an indication whether the left or right node data exist for root, it will not be a part of the node data.
+
+Constraints
+1 <= N <= 10^6
+Where N is the total number of nodes in the binary tree.
+Time Limit: 1 sec
+
+Output Format
+The only line of output prints the number of nodes in Binary Tree
+
+Sample Input 0
+1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
+
+Sample Output 0
+7
+
+
+//Solution
+
+import java.io.*;
+import java.util.*;
+
+class node{
+    node right;
+    node left;
+    int data;
+    node(int d){
+        data=d;
+    }
+    
+}
+
+
+public class Solution {
+    
+    static node root=null;
+    
+    static int count(node nn){
+        if(nn==null){
+            return 0;
+        }
+        return 1+ count(nn.left) + count(nn.right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String s[]=sc.nextLine().split(" ");
+        Queue<node> q=new LinkedList<>();
+
+        node root=new node(Integer.parseInt(s[0]));
+        q.add(root);
+        int i=1;
+        while(!q.isEmpty()){
+            node t=q.poll();
+            int d=Integer.parseInt(s[i++]);
+            if(d!=-1){
+                node nn=new node(d);
+                t.left=nn;
+                q.add(nn);
+            }
+            d=Integer.parseInt(s[i++]);
+            if(d!=-1){
+                node nn=new node(d);
+                t.right=nn;
+                q.add(nn);
+            }
+        }
+
+        System.out.print(count(root));
+    }
+}
