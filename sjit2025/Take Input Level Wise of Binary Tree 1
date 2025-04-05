@@ -1,0 +1,70 @@
+Take Input Level Wise of Binary Tree and then print in the inorder format
+
+Input Format -
+Constraints -
+Output Format -
+ 
+Inorder traversal of Binary tree
+
+Sample Input 0
+1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
+
+Sample Output 0
+4 2 5 1 6 3 7
+
+
+//Solution
+
+import java.io.*;
+import java.util.*;
+
+class node{
+    node right;
+    node left;
+    int data;
+    node(int d){
+        data=d;
+    }
+    
+}
+
+public class Solution {
+
+    static node root=null;
+    
+    static void dis(node nn){
+        if(nn!=null){
+            dis(nn.left);
+            System.out.print(nn.data+" ");
+            dis(nn.right);
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String s[]=sc.nextLine().split(" ");
+        Queue<node> q=new LinkedList<>();
+
+        node root=new node(Integer.parseInt(s[0]));
+        q.add(root);
+        int i=1;
+        while(!q.isEmpty()){
+            node t=q.poll();
+            int d=Integer.parseInt(s[i++]);
+            if(d!=-1){
+                node nn=new node(d);
+                t.left=nn;
+                q.add(nn);
+            }
+            d=Integer.parseInt(s[i++]);
+            if(d!=-1){
+                node nn=new node(d);
+                t.right=nn;
+                q.add(nn);
+            }
+        }
+        
+        dis(root);
+    }
+}
